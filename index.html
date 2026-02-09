@@ -4,227 +4,173 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>GM Pedicure | Pedicure y Manicure Clínicos • San José del Cabo</title>
-  <meta name="description" content="Pedicure clínico profesional en San José del Cabo. Atención especializada, higiene y resultados seguros. Citas por WhatsApp 624 506 5825." />
+  <meta name="description" content="GM Pedicure en San José del Cabo. Pedicure clínico completo desde $500. Citas por WhatsApp: +52 1 624 506 5825. Ubicación: Blvd. Forjadores Lomas de Rosarito 23444." />
 
   <style>
     :root{
       --bg:#f6fbff;
-      --white:#ffffff;
+      --surface:#ffffff;
       --text:#0b1b2b;
       --muted:#4a6174;
-      --brand:#0879b2;
-      --brand2:#0f97d3;
-      --border:rgba(8,121,178,.18);
+      --line:rgba(8,121,178,.18);
+      --brand:#0879b2;   /* GM blue */
+      --brand2:#0f97d3;  /* lighter accent */
+      --shadow:0 18px 55px rgba(0,0,0,.10);
       --radius:18px;
       --max:1120px;
     }
-
     *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
-      background:var(--bg);
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
       color:var(--text);
+      background:
+        radial-gradient(900px 520px at 15% 10%, rgba(8,121,178,.14), transparent 55%),
+        radial-gradient(850px 520px at 90% 25%, rgba(15,151,211,.12), transparent 55%),
+        radial-gradient(900px 520px at 50% 120%, rgba(8,121,178,.08), transparent 60%),
+        var(--bg);
       line-height:1.5;
+      overflow-x:hidden;
     }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
 
-    a{text-decoration:none;color:inherit}
-    .wrap{max-width:var(--max);margin:auto;padding:0 20px}
-
+    /* Header */
     header{
-      position:sticky;top:0;z-index:9;
-      background:#fff;border-bottom:1px solid var(--border)
+      position:sticky;top:0;z-index:50;
+      backdrop-filter:blur(12px);
+      background:rgba(246,251,255,.82);
+      border-bottom:1px solid var(--line);
     }
-    .head{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:12px}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:800}
+    .head{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.2px}
     .logo{
       width:42px;height:42px;border-radius:14px;
-      background:var(--white);
-      border:1px solid var(--border);
+      background:var(--surface);
+      border:1px solid var(--line);
       display:grid;place-items:center;
-      font-weight:900;color:var(--brand)
+      box-shadow:0 10px 26px rgba(8,121,178,.14);
+      font-weight:950;color:var(--brand);
     }
-    nav{display:flex;gap:16px}
-    nav a{font-weight:700;color:var(--muted)}
+    .brand small{display:block;color:var(--muted);font-weight:750;margin-top:2px}
+    nav{display:flex;gap:16px;align-items:center}
+    nav a{color:var(--muted);font-weight:800;font-size:14px}
     nav a:hover{color:var(--text)}
-
+    .actions{display:flex;align-items:center;gap:10px}
+    .lang{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 12px;border-radius:999px;
+      background:rgba(255,255,255,.75);
+      border:1px solid var(--line);
+      font-weight:900;color:var(--muted);
+      cursor:pointer;user-select:none;white-space:nowrap;
+    }
+    .lang b{color:var(--text)}
     .cta{
-      background:linear-gradient(135deg,var(--brand),var(--brand2));
-      color:#fff;padding:10px 16px;border-radius:999px;font-weight:900
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:10px 14px;border-radius:999px;
+      background:rgba(8,121,178,.12);
+      border:1px solid rgba(8,121,178,.28);
+      font-weight:950;white-space:nowrap;
     }
+    .cta:hover{background:rgba(8,121,178,.16)}
+    .hamburger{
+      display:none;width:42px;height:42px;border-radius:14px;
+      background:rgba(255,255,255,.75);
+      border:1px solid var(--line);
+      cursor:pointer;
+    }
+    .mobile-nav{display:none;padding:0 0 14px}
+    .mobile-nav a{
+      display:block;padding:10px 0;
+      color:var(--muted);font-weight:900;
+      border-top:1px solid rgba(8,121,178,.12);
+    }
+    .mobile-nav.show{display:block}
 
-    .hero{padding:56px 0}
-    .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px}
-    h1{font-size:clamp(32px,4vw,48px);margin:12px 0}
-    .sub{color:var(--muted);max-width:60ch}
-
-    .btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+    /* Hero */
+    .hero{padding:54px 0 22px}
+    .grid{display:grid;grid-template-columns:1.08fr .92fr;gap:26px;align-items:stretch}
+    .kicker{
+      display:inline-flex;gap:10px;align-items:center;
+      padding:7px 10px;border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.7);
+      color:var(--muted);font-weight:900;font-size:13px;
+    }
+    .dot{width:10px;height:10px;border-radius:999px;background:var(--brand);box-shadow:0 0 18px rgba(8,121,178,.35)}
+    h1{margin:14px 0 10px;font-size:clamp(34px,4vw,52px);line-height:1.06;letter-spacing:-.8px}
+    .sub{color:var(--muted);font-size:16px;max-width:60ch;margin:0 0 18px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px}
     .btn{
+      display:inline-flex;align-items:center;justify-content:center;
       padding:12px 16px;border-radius:999px;
-      border:1px solid var(--border);
-      background:#fff;font-weight:800
+      font-weight:950;border:1px solid var(--line);
+      background:rgba(255,255,255,.78);gap:10px;
     }
-    .btn.primary{background:var(--brand);color:#fff}
+    .btn.primary{
+      background:linear-gradient(135deg, rgba(8,121,178,.95), rgba(15,151,211,.72));
+      border:1px solid rgba(8,121,178,.18);
+      box-shadow:0 16px 40px rgba(8,121,178,.22);
+      color:#fff;
+    }
+    .note{color:var(--muted);font-size:13px;margin-top:12px}
 
-    section{padding:56px 0}
-    h2{margin-bottom:10px}
-
-    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
     .card{
-      background:#fff;border-radius:var(--radius);
-      border:1px solid var(--border);padding:18px
+      border-radius:var(--radius);
+      background:rgba(255,255,255,.84);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      overflow:hidden;
     }
-
-    .price{
-      margin-top:16px;
-      background:rgba(8,121,178,.08);
-      border-radius:999px;
-      padding:10px 16px;
-      display:inline-block;
-      font-weight:900
+    .photo{
+      height:228px;
+      background:
+        radial-gradient(700px 420px at 60% 10%, rgba(8,121,178,.22), transparent 55%),
+        radial-gradient(650px 420px at 20% 70%, rgba(15,151,211,.18), transparent 55%),
+        linear-gradient(135deg, rgba(8,121,178,.08), rgba(255,255,255,0));
+      position:relative;
     }
-
-    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-    .ph{background:#eaf4fb;border-radius:16px;height:160px}
-
-    .contact{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-    iframe{width:100%;border:0;border-radius:16px}
-
-    footer{
-      padding:28px 0;border-top:1px solid var(--border);
-      background:#fff;font-size:13px;color:var(--muted)
+    .photo:after{
+      content:"GM Pedicure • San José del Cabo";
+      position:absolute;inset:auto 14px 14px 14px;
+      padding:10px 12px;border-radius:14px;
+      background:rgba(255,255,255,.88);
+      border:1px solid rgba(8,121,178,.18);
+      color:rgba(11,27,43,.86);
+      font-weight:950;font-size:13px;
     }
-
-    @media(max-width:900px){
-      .grid,.cards,.contact{grid-template-columns:1fr}
-      .gallery{grid-template-columns:1fr 1fr}
+    .card-body{padding:16px 16px 18px}
+    .facts{display:grid;grid-template-columns:1fr 1fr;gap::10px;gap:10px;margin-top:6px}
+    .fact{
+      padding:12px 12px;border-radius:16px;
+      background:rgba(8,121,178,.06);
+      border:1px solid rgba(8,121,178,.14);
     }
-  </style>
-</head>
+    .fact b{display:block;font-size:14px}
+    .fact span{color:var(--muted);font-size:13px}
 
-<body>
+    /* Sections */
+    section{padding:46px 0}
+    .section-title{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:14px}
+    .section-title h2{margin:0;font-size:24px;letter-spacing:-.3px}
+    .section-title p{margin:0;color:var(--muted);max-width:76ch}
 
-<header>
-  <div class="wrap head">
-    <div class="brand">
-      <div class="logo">GM</div>
-      GM Pedicure
-    </div>
+    .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+    .tile{
+      padding:16px;border-radius:var(--radius);
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.84);
+      box-shadow:0 10px 26px rgba(0,0,0,.04);
+    }
+    .tile h3{margin:0 0 6px;font-size:16px}
+    .tile p{margin:0;color:var(--muted);font-size:14px}
+    .tile ul{margin:10px 0 0;padding-left:18px;color:var(--muted);font-size:14px}
 
-    <nav>
-      <a href="#servicios">Servicios</a>
-      <a href="#galeria">Galería</a>
-      <a href="#contacto">Contacto</a>
-      <a href="https://www.instagram.com/gm.pedicure/" target="_blank">Instagram</a>
-      <a href="https://www.facebook.com/gmpedicure#" target="_blank">Facebook</a>
-    </nav>
+    .banner{
+      margin-top:16px;padding:16px;border-radius:var(--radius);
+      border:1px solid rgba(8,121,178,.18);
+      background:linear-gradient(135deg, rgba(8,121,178,.10), rgba(15,151,211,.06));
+      display:flex;flex-wrap:wr
 
-    <a class="cta" href="https://wa.me/5216245065825" target="_blank">WhatsApp</a>
-  </div>
-</header>
-
-<main>
-
-<section class="hero">
-  <div class="wrap grid">
-    <div>
-      <h1>Tus pies merecen atención profesional</h1>
-      <p class="sub">
-        No se trata solo de estética, se trata de salud.
-        Realizamos pedicure clínico completo para que camines sin molestias y con total seguridad.
-      </p>
-
-      <div class="btns">
-        <a class="btn primary" href="https://wa.me/5216245065825" target="_blank">Reservar por WhatsApp</a>
-        <a class="btn" href="#servicios">Ver servicios</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <b>📍 Dirección</b>
-      <p>Bulevar Forjadores Lomas de Rosarito 23444<br>San José del Cabo, Mexico</p>
-
-      <b>📲 Citas</b>
-      <p>+52 1 624 506 5825</p>
-
-      <b>🕘 Horario</b>
-      <p>09:00 – 18:00</p>
-    </div>
-  </div>
-</section>
-
-<section id="servicios">
-  <div class="wrap">
-    <h2>Servicios</h2>
-
-    <div class="cards">
-      <div class="card">
-        <h3>Pedicure clínico completo</h3>
-        <ul>
-          <li>Diagnóstico especializado</li>
-          <li>Eliminación de callosidades</li>
-          <li>Corte correcto de uñas</li>
-          <li>Exfoliación y masaje</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>Manicure clínico</h3>
-        <ul>
-          <li>Limpieza profesional</li>
-          <li>Cuidado de cutícula</li>
-          <li>Acabado limpio y natural</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>Extras</h3>
-        <ul>
-          <li>Exfoliación</li>
-          <li>Masaje</li>
-          <li>Evaluación de uñas encarnadas</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="price">Desde $500 MXN</div>
-  </div>
-</section>
-
-<section id="galeria">
-  <div class="wrap">
-    <h2>Galería</h2>
-    <div class="gallery">
-      <div class="ph"></div>
-      <div class="ph"></div>
-      <div class="ph"></div>
-    </div>
-  </div>
-</section>
-
-<section id="contacto">
-  <div class="wrap contact">
-    <div>
-      <h2>Contacto</h2>
-      <p>Reserva tu cita fácilmente por WhatsApp.</p>
-      <a class="btn primary" href="https://wa.me/5216245065825" target="_blank">WhatsApp</a>
-    </div>
-
-    <iframe
-      src="https://www.google.com/maps?q=Bulevar%20Forjadores%20Lomas%20de%20Rosarito%2023444%20San%20Jos%C3%A9%20del%20Cabo&output=embed"
-      height="260"
-      loading="lazy">
-    </iframe>
-  </div>
-</section>
-
-</main>
-
-<footer>
-  <div class="wrap">
-    © 2026 GM Pedicure • San José del Cabo
-  </div>
-</footer>
-
-</body>
-</html>
