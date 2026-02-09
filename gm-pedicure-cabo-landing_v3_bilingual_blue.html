@@ -1,0 +1,812 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GM Pedicure | Pedicure y Manicure Clínicos • San José del Cabo</title>
+  <meta name="description" content="GM Pedicure en San José del Cabo. Pedicure clínico y manicure clínico. Citas por WhatsApp: +52 1 624 506 5825. Dirección: Bulevar Forjadores Lomas de Rosarito 23444, San José del Cabo, Mexico." />
+  <style>
+    :root{
+      --bg: #f6fbff;
+      --surface: #ffffff;
+      --text: #0b1b2b;
+      --muted: #4a6174;
+      --line: rgba(8,121,178,.18);
+      --brand: #0879b2;      /* GM blue */
+      --brand2:#0f97d3;      /* lighter accent */
+      --tint: rgba(8,121,178,.08);
+      --shadow: 0 18px 55px rgba(0,0,0,.10);
+      --radius: 18px;
+      --max: 1120px;
+    }
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text);
+      background:
+        radial-gradient(900px 520px at 15% 10%, rgba(8,121,178,.14), transparent 55%),
+        radial-gradient(850px 520px at 90% 25%, rgba(15,151,211,.12), transparent 55%),
+        radial-gradient(900px 520px at 50% 120%, rgba(8,121,178,.08), transparent 60%),
+        var(--bg);
+      line-height:1.5;
+      overflow-x:hidden;
+    }
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width:var(--max); margin:0 auto; padding:0 22px; }
+
+    /* Header */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      background: rgba(246,251,255,.78);
+      border-bottom: 1px solid var(--line);
+    }
+    .head{
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+      padding: 14px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      font-weight: 800; letter-spacing: .2px;
+    }
+    .logo{
+      width: 40px; height: 40px;
+      border-radius: 14px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      display:grid; place-items:center;
+      box-shadow: 0 10px 26px rgba(8,121,178,.14);
+      overflow:hidden;
+    }
+    .logo img{ width: 34px; height:auto; display:block; }
+    .brand small{ display:block; color:var(--muted); font-weight:650; margin-top:1px; }
+
+    nav{ display:flex; gap:18px; align-items:center; }
+    nav a{ color: var(--muted); font-weight:700; font-size: 14px; }
+    nav a:hover{ color: var(--text); }
+
+    .actions{ display:flex; align-items:center; gap:10px; }
+    .lang{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.7);
+      border: 1px solid var(--line);
+      font-weight: 800;
+      color: var(--muted);
+      cursor:pointer;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .lang b{ color: var(--text); }
+    .cta{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(8,121,178,.12);
+      border: 1px solid rgba(8,121,178,.28);
+      color: var(--text);
+      font-weight: 850;
+      gap: 10px;
+      white-space: nowrap;
+    }
+    .cta:hover{ background: rgba(8,121,178,.16); }
+
+    .hamburger{
+      display:none;
+      width: 42px; height: 42px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.75);
+      border: 1px solid var(--line);
+      color: var(--text);
+      cursor:pointer;
+    }
+    .mobile-nav{ display:none; padding: 0 0 14px; }
+    .mobile-nav a{
+      display:block;
+      padding: 10px 0;
+      color: var(--muted);
+      font-weight: 800;
+      border-top: 1px solid rgba(8,121,178,.12);
+    }
+
+    /* Hero */
+    .hero{ padding: 54px 0 22px; }
+    .grid{
+      display:grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 26px;
+      align-items: stretch;
+    }
+    .kicker{
+      display:inline-flex; gap:10px; align-items:center;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.7);
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 13px;
+    }
+    .dot{
+      width: 10px; height:10px; border-radius:999px;
+      background: var(--brand);
+      box-shadow: 0 0 18px rgba(8,121,178,.35);
+    }
+    h1{
+      margin: 14px 0 10px;
+      font-size: clamp(34px, 4vw, 52px);
+      line-height: 1.06;
+      letter-spacing: -0.8px;
+    }
+    .sub{
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 60ch;
+      margin: 0 0 18px;
+    }
+    .hero-actions{ display:flex; flex-wrap:wrap; gap:12px; }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 12px 16px;
+      border-radius: 999px;
+      font-weight: 900;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.78);
+      color: var(--text);
+      gap:10px;
+    }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(8,121,178,.95), rgba(15,151,211,.72));
+      border: 1px solid rgba(8,121,178,.18);
+      box-shadow: 0 16px 40px rgba(8,121,178,.22);
+      color: #ffffff;
+    }
+    .btn:hover{ transform: translateY(-1px); }
+    .btn:active{ transform: translateY(0); }
+    .note{ color: var(--muted); font-size: 13px; margin-top: 12px; }
+
+    .card{
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.82);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .photo{
+      height: 228px;
+      background:
+        radial-gradient(700px 420px at 60% 10%, rgba(8,121,178,.22), transparent 55%),
+        radial-gradient(650px 420px at 20% 70%, rgba(15,151,211,.18), transparent 55%),
+        linear-gradient(135deg, rgba(8,121,178,.08), rgba(255,255,255,.0));
+      position: relative;
+    }
+    .photo:after{
+      content: "GM Pedicure • San José del Cabo";
+      position:absolute; inset:auto 14px 14px 14px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.82);
+      border: 1px solid rgba(8,121,178,.18);
+      color: rgba(11,27,43,.86);
+      font-weight: 900;
+      font-size: 13px;
+    }
+    .card-body{ padding: 16px 16px 18px; }
+    .facts{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 6px;
+    }
+    .fact{
+      padding: 12px 12px;
+      border-radius: 16px;
+      background: rgba(8,121,178,.06);
+      border: 1px solid rgba(8,121,178,.14);
+    }
+    .fact b{ display:block; font-size: 14px; }
+    .fact span{ color: var(--muted); font-size: 13px; }
+
+    /* Sections */
+    section{ padding: 46px 0; }
+    .section-title{ display:flex; align-items:flex-end; justify-content:space-between; gap:16px; margin-bottom: 14px; }
+    .section-title h2{ margin:0; font-size: 24px; letter-spacing: -0.3px; }
+    .section-title p{ margin:0; color: var(--muted); max-width: 76ch; }
+
+    .tiles{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 18px; }
+    .tile{
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.82);
+      box-shadow: 0 10px 26px rgba(0,0,0,.04);
+    }
+    .tile h3{ margin: 0 0 6px; font-size: 16px; }
+    .tile p{ margin: 0; color: var(--muted); font-size: 14px; }
+    .tile ul{ margin: 10px 0 0; padding-left: 18px; color: var(--muted); font-size: 14px; }
+
+    .banner{
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(8,121,178,.18);
+      background: linear-gradient(135deg, rgba(8,121,178,.10), rgba(15,151,211,.06));
+      display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between;
+    }
+    .price{
+      display:inline-flex; align-items:center; gap:10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.85);
+      border: 1px solid rgba(8,121,178,.18);
+      font-weight: 950;
+    }
+
+    .gallery{ display:grid; grid-template-columns: repeat(12, 1fr); gap: 12px; margin-top: 16px; }
+    .ph{
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.78);
+      min-height: 140px;
+      position:relative;
+      overflow:hidden;
+    }
+    .ph:before{
+      content:"";
+      position:absolute; inset:-40% -40%;
+      background: radial-gradient(circle at 30% 30%, rgba(8,121,178,.20), transparent 50%),
+                  radial-gradient(circle at 70% 60%, rgba(15,151,211,.14), transparent 55%);
+    }
+    .ph:after{
+      content:"Foto (placeholder)";
+      position:absolute; inset:auto 12px 12px 12px;
+      padding: 9px 10px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.86);
+      border: 1px solid rgba(8,121,178,.16);
+      color: rgba(11,27,43,.78);
+      font-weight: 900;
+      font-size: 12px;
+    }
+    .ph.a{ grid-column: span 6; min-height: 220px; }
+    .ph.b{ grid-column: span 3; }
+    .ph.c{ grid-column: span 3; }
+    .ph.d{ grid-column: span 4; min-height: 190px; }
+    .ph.e{ grid-column: span 4; min-height: 190px; }
+    .ph.f{ grid-column: span 4; min-height: 190px; }
+
+    /* Contact */
+    .contact{ display:grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items:start; }
+    .panel{
+      padding: 18px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.84);
+      box-shadow: 0 10px 26px rgba(0,0,0,.04);
+    }
+    .meta{ display:grid; gap: 12px; margin-top: 12px; }
+    .meta .row{
+      display:flex; justify-content:space-between; gap:12px;
+      padding: 12px 12px;
+      border-radius: 16px;
+      background: rgba(8,121,178,.06);
+      border: 1px solid rgba(8,121,178,.14);
+    }
+    .meta .row span{ color: var(--muted); font-weight: 800; }
+    .meta .row b{ font-weight: 950; }
+
+    form{ display:grid; gap: 10px; margin-top: 8px; }
+    input, textarea{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(8,121,178,.20);
+      background: rgba(246,251,255,.9);
+      color: var(--text);
+      outline:none;
+      font-size: 14px;
+    }
+    textarea{ min-height: 110px; resize: vertical; }
+
+    footer{
+      padding: 22px 0 34px;
+      color: rgba(11,27,43,.70);
+      border-top: 1px solid var(--line);
+      background: rgba(255,255,255,.70);
+    }
+    .foot{ display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between; }
+    .tiny{ font-size: 13px; }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .grid{ grid-template-columns: 1fr; }
+      .tiles{ grid-template-columns: 1fr; }
+      .contact{ grid-template-columns: 1fr; }
+      .ph.a{ grid-column: span 12; }
+      .ph.b,.ph.c{ grid-column: span 6; }
+      .ph.d,.ph.e,.ph.f{ grid-column: span 12; }
+      nav{ display:none; }
+      .hamburger{ display:inline-flex; align-items:center; justify-content:center; }
+      .mobile-nav.show{ display:block; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap">
+      <div class="head">
+        <div class="brand" aria-label="GM Pedicure">
+          <div class="logo"><img src="data:image/jpeg;base64,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PPPPPPPPPPPPPPPPPPPPHctfPPPPPPPPPPPPPPPPPPPPPPONn/EfLGfPPol/PPPPPPPPPPPPPPPPO/Nq0/OVHfOV/wDzzzzzzzzzzzzzzzzh3TlTjflHR6J3/wA8888888888888888Rc6co99Dfk0/X888888888888888886vJBI09h+jc/f8APPPPPPPPPPPPPPPPPH8ipfKJ3PPC3PPPPPPPPPPPPPOttctMNv8Az7TH37bXPbnbzzzzzzzzzzt0OYcuyooGgpL6q9QVzjTzzzzzzzzy/f8Af+R36GFUyw1VVEyzqU888888888f98fvtM8veN+8+d/+Ptsd8888808888888888888888888888808888p0/O2rY6ieF12mqZ2e9BGgUN/BTwKrtHibOfAvsiqOPS0cCXkNdSo8A5/AjG888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888/9oACAEDEwE/EP8A0rNJi24YOn4oszLvpOTnzNHLQEcStHaNahKAEJNx19VASA4UE0AEA3EuJydv5M4uh7RHxPAqdUNw073qM4gjkmCcq2tS2eAbLvqqzSqsLq7ftUKGDI0c51L/AMhJs3HJvQ5IapI8dq5L61no5TtFc3jUzuYEnqjwFQNgJmyLMiTWz0p2AO37oMMAdBP8icEQs6kwdCz1igoqChIthi29K2WNkUD8Q2y8UhMyP6PhNFoAkEXwh2MNCQgABsGP5BhxHaiJ6zbo0hmSzXUH5jiAsjHTZOY3rRFkHNsdfx/JGifIbJzKj5uPSh6JDxuPM43cwPy7/wAocZMHVaJzrGoS9FF5/HAV8MuxNSbrEuf6B5/lDhhV206ramTsnkPbhY2TwX/A71Fkj9A9I/lN0Tn3g+b9Yo+tHus+MdqWKiy9qfM9DuUEfyoRSvUTHciutESDs1qzCC8tDMbtZzde2w6e/wDLeEzB+Zp7ITaR9ya+So307fyZ8WtS3sHlmlLDtL3NAbXyle6elWJQ5ydtB0vy4jY9X9qxjC55B+YjgAVYC67BloxqLcmU3704IsRiymvT+EhjiU5B6mhzqQEavcB15rbWjsvVH2IKPvaCp9GfxU+ozDHV7DTg1m/NauTdh8B0aPbhenVRpo7svKk13/hr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" alt="GM Pedicure logo"></div>
+          <div>
+            GM Pedicure
+            <small data-i18n="header.subtitle">Pedicure y manicure clínicos • San José del Cabo</small>
+          </div>
+        </div>
+
+        <nav aria-label="Primary">
+          <a href="#services" data-i18n="nav.services">Servicios</a>
+          <a href="#gallery" data-i18n="nav.gallery">Galería</a>
+          <a href="#about" data-i18n="nav.about">Nosotros</a>
+          <a href="#contact" data-i18n="nav.contact">Contacto</a>
+          <a href="https://instagram.com/REEMPLAZA_TU_USUARIO" target="_blank" rel="noopener">Instagram</a>
+        </nav>
+
+        <div class="actions">
+          <div class="lang" role="button" tabindex="0" onclick="toggleLang()" onkeydown="if(event.key==='Enter')toggleLang()">
+            <span data-i18n="lang.label">Idioma</span>: <b id="langState">ES</b> / EN
+          </div>
+          <a class="cta" href="https://wa.me/5216245065825" target="_blank" rel="noopener" data-i18n="cta.book">Reservar por WhatsApp</a>
+          <button class="hamburger" aria-label="Open menu" onclick="toggleMenu()">☰</button>
+        </div>
+      </div>
+
+      <div id="mobileNav" class="mobile-nav" aria-label="Mobile navigation">
+        <a href="#services" onclick="toggleMenu(true)" data-i18n="nav.services">Servicios</a>
+        <a href="#gallery" onclick="toggleMenu(true)" data-i18n="nav.gallery">Galería</a>
+        <a href="#about" onclick="toggleMenu(true)" data-i18n="nav.about">Nosotros</a>
+        <a href="#contact" onclick="toggleMenu(true)" data-i18n="nav.contact">Contacto</a>
+        <a href="https://instagram.com/REEMPLAZA_TU_USUARIO" target="_blank" rel="noopener" onclick="toggleMenu(true)">Instagram</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap hero">
+      <div class="grid">
+        <div>
+          <div class="kicker"><span class="dot"></span><span data-i18n="hero.kicker">Salud • Higiene • Estética</span></div>
+          <h1 data-i18n="hero.title">Tus pies merecen atención profesional.</h1>
+          <p class="sub" data-i18n="hero.subtitle">
+            No se trata solo de estética, se trata de salud. Realizamos pedicure clínico completo para que camines sin molestias y con total seguridad.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="https://wa.me/5216245065825?text=Hola%2C%20quiero%20reservar%20una%20cita%20en%20GM%20Pedicure.%20%C2%BFQu%C3%A9%20horarios%20tienen%20disponibles%3F" target="_blank" rel="noopener" data-i18n="hero.whatsapp">WhatsApp • Reservar</a>
+            <a class="btn" href="#services" data-i18n="hero.viewServices">Ver servicios</a>
+            <a class="btn" href="#contact" data-i18n="hero.directions">Cómo llegar</a>
+          </div>
+
+          <p class="note"><span data-i18n="hero.hoursLabel">Horario</span>: <b>09:00–18:00</b> • <span data-i18n="hero.walkins">Se aceptan personas sin cita (recomendado reservar en fin de semana)</span></p>
+        </div>
+
+        <div class="card" aria-label="Salon info">
+          <div class="photo"></div>
+          <div class="card-body">
+            <div class="facts">
+              <div class="fact">
+                <b data-i18n="facts.location">Ubicación</b>
+                <span>San José del Cabo</span>
+              </div>
+              <div class="fact">
+                <b data-i18n="facts.hours">Horario</b>
+                <span>09:00–18:00</span>
+              </div>
+              <div class="fact">
+                <b data-i18n="facts.phone">Citas</b>
+                <span>+52 1 624 506 5825</span>
+              </div>
+              <div class="fact">
+                <b data-i18n="facts.address">Dirección</b>
+                <span>Blvd. Forjadores Lomas de Rosarito</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="services">
+      <div class="wrap">
+        <div class="section-title">
+          <div>
+            <h2 data-i18n="services.title">Servicios</h2>
+            <p data-i18n="services.subtitle">Pedicure y manicure clínicos. Atención profesional, higiene y resultados que se sienten y se ven.</p>
+          </div>
+        </div>
+
+        <div class="tiles">
+          <div class="tile">
+            <h3 data-i18n="services.clinical.title">Pedicure clínico completo</h3>
+            <p data-i18n="services.clinical.desc">Ideal si tienes molestias, callosidades o quieres un cuidado seguro y profesional.</p>
+            <ul>
+              <li data-i18n="services.clinical.b1">Diagnóstico especializado</li>
+              <li data-i18n="services.clinical.b2">Eliminación de callosidades</li>
+              <li data-i18n="services.clinical.b3">Corte correcto de uñas y limpieza de canales</li>
+              <li data-i18n="services.clinical.b4">Exfoliación y masaje (manual y mecánico)</li>
+            </ul>
+          </div>
+
+          <div class="tile">
+            <h3 data-i18n="services.mani.title">Manicure clínico</h3>
+            <p data-i18n="services.mani.desc">Limpieza, forma y cuidado profesional para manos saludables y uñas bonitas.</p>
+            <ul>
+              <li data-i18n="services.mani.b1">Limpieza y corte profesional</li>
+              <li data-i18n="services.mani.b2">Cuidado de cutícula</li>
+              <li data-i18n="services.mani.b3">Acabado limpio y natural</li>
+            </ul>
+          </div>
+
+          <div class="tile">
+            <h3 data-i18n="services.addons.title">Extras</h3>
+            <p data-i18n="services.addons.desc">¿Tienes una idea o una necesidad específica? Escríbenos y te recomendamos lo mejor.</p>
+            <ul>
+              <li data-i18n="services.addons.b1">Exfoliación</li>
+              <li data-i18n="services.addons.b2">Masaje</li>
+              <li data-i18n="services.addons.b3">Cuidado de uñas encarnadas (evaluación)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="banner">
+          <div>
+            <b data-i18n="promo.title">¡Cuida tus pies con profesionales!</b>
+            <div class="note" style="margin:6px 0 0;" data-i18n="promo.subtitle">Pedicure clínico completo — reserva tu cita hoy.</div>
+          </div>
+          <div class="price" aria-label="Price">
+            <span data-i18n="promo.from">Desde</span> <span style="color:var(--brand); font-size:18px;">$500 MXN</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="wrap">
+        <div class="section-title">
+          <div>
+            <h2 data-i18n="gallery.title">Galería</h2>
+            <p data-i18n="gallery.subtitle">Reemplaza estos espacios con tus mejores fotos (trabajos, pies/manos, espacio del consultorio).</p>
+          </div>
+        </div>
+
+        <div class="gallery">
+          <div class="ph a"></div>
+          <div class="ph b"></div>
+          <div class="ph c"></div>
+          <div class="ph d"></div>
+          <div class="ph e"></div>
+          <div class="ph f"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="section-title">
+          <div>
+            <h2 data-i18n="about.title">Nosotros</h2>
+            <p data-i18n="about.subtitle">Cuidado clínico con trato amable. Tu comodidad, seguridad e higiene son prioridad.</p>
+          </div>
+        </div>
+
+        <div class="tiles">
+          <div class="tile">
+            <h3 data-i18n="about.b1.title">Higiene y seguridad</h3>
+            <p data-i18n="about.b1.desc">Enfoque clínico con prácticas limpias y cuidadosas.</p>
+          </div>
+          <div class="tile">
+            <h3 data-i18n="about.b2.title">Atención profesional</h3>
+            <p data-i18n="about.b2.desc">Diagnóstico, técnica y detalle para resultados que duran.</p>
+          </div>
+          <div class="tile">
+            <h3 data-i18n="about.b3.title">Ubicación accesible</h3>
+            <p data-i18n="about.b3.desc">Estamos en San José del Cabo — agenda por WhatsApp y llega fácil con el mapa.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="section-title">
+          <div>
+            <h2 data-i18n="contact.title">Contacto y citas</h2>
+            <p data-i18n="contact.subtitle">La forma más rápida: WhatsApp. También puedes enviar un mensaje desde aquí.</p>
+          </div>
+        </div>
+
+        <div class="contact">
+          <div class="panel">
+            <h3 style="margin:0 0 6px;" data-i18n="contact.details">Detalles</h3>
+            <div class="meta">
+              <div class="row">
+                <span data-i18n="contact.hours">Horario</span>
+                <b>09:00–18:00</b>
+              </div>
+              <div class="row">
+                <span data-i18n="contact.phone">Teléfono / WhatsApp</span>
+                <b>+52 1 624 506 5825</b>
+              </div>
+              <div class="row">
+                <span data-i18n="contact.address">Dirección</span>
+                <b>Bulevar Forjadores Lomas de Rosarito 23444, San José del Cabo, Mexico</b>
+              </div>
+            </div>
+
+            <div style="margin-top:12px;">
+              <a class="btn primary" style="width:100%; justify-content:center;" href="https://wa.me/5216245065825" target="_blank" rel="noopener" data-i18n="contact.whatsappBtn">Reservar por WhatsApp</a>
+            </div>
+
+            <p class="note" data-i18n="contact.mapNote">Mapa (Google Maps) integrado abajo.</p>
+
+            <div class="ph" style="min-height: 240px; padding:0; overflow:hidden;">
+              <iframe
+                title="Ubicación GM Pedicure"
+                width="100%"
+                height="240"
+                style="border:0; display:block;"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps?q=Bulevar%20Forjadores%20Lomas%20de%20Rosarito%2023444%2C%20San%20Jos%C3%A9%20del%20Cabo%2C%20Mexico&output=embed">
+              </iframe>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3 style="margin:0 0 6px;" data-i18n="contact.formTitle">Enviar mensaje</h3>
+            <p class="note" style="margin-top:0;" data-i18n="contact.formNote">
+              Este formulario abre tu app de correo para enviar el mensaje (sin backend).
+            </p>
+
+            <form onsubmit="return sendMail(event)">
+              <input id="name" name="name" placeholder="Tu nombre" required />
+              <input id="phone" name="phone" placeholder="Teléfono / WhatsApp (opcional)" />
+              <input id="service" name="service" placeholder="¿Qué servicio deseas?" required />
+              <textarea id="message" name="message" placeholder="Dinos el día/horario que prefieres y cualquier detalle" required></textarea>
+              <button class="btn primary" type="submit" data-i18n="contact.send">Enviar mensaje</button>
+              <a class="btn" href="https://wa.me/5216245065825" target="_blank" rel="noopener" data-i18n="contact.msgWa">Mandar WhatsApp</a>
+            </form>
+
+            <p class="note" data-i18n="contact.tip">
+              Tip: cambia el usuario de Instagram en los links a tu cuenta real.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <div class="tiny">© <span id="yr"></span> GM Pedicure • San José del Cabo</div>
+      <div class="tiny">
+        <a href="https://instagram.com/REEMPLAZA_TU_USUARIO" target="_blank" rel="noopener">Instagram</a>
+        • <span data-i18n="footer.tag">Pedicure y manicure clínicos</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple mobile menu
+    function toggleMenu(forceClose){
+      const nav = document.getElementById('mobileNav');
+      if(forceClose){ nav.classList.remove('show'); return; }
+      nav.classList.toggle('show');
+    }
+
+    // Bilingual dictionary
+    const I18N = {
+      es: {
+        "header.subtitle": "Pedicure y manicure clínicos • San José del Cabo",
+        "lang.label": "Idioma",
+        "cta.book": "Reservar por WhatsApp",
+        "nav.services": "Servicios",
+        "nav.gallery": "Galería",
+        "nav.about": "Nosotros",
+        "nav.contact": "Contacto",
+        "hero.kicker": "Salud • Higiene • Estética",
+        "hero.title": "Tus pies merecen atención profesional.",
+        "hero.subtitle": "No se trata solo de estética, se trata de salud. Realizamos pedicure clínico completo para que camines sin molestias y con total seguridad.",
+        "hero.whatsapp": "WhatsApp • Reservar",
+        "hero.viewServices": "Ver servicios",
+        "hero.directions": "Cómo llegar",
+        "hero.hoursLabel": "Horario",
+        "hero.walkins": "Se aceptan personas sin cita (recomendado reservar en fin de semana)",
+        "facts.location": "Ubicación",
+        "facts.hours": "Horario",
+        "facts.phone": "Citas",
+        "facts.address": "Dirección",
+        "services.title": "Servicios",
+        "services.subtitle": "Pedicure y manicure clínicos. Atención profesional, higiene y resultados que se sienten y se ven.",
+        "services.clinical.title": "Pedicure clínico completo",
+        "services.clinical.desc": "Ideal si tienes molestias, callosidades o quieres un cuidado seguro y profesional.",
+        "services.clinical.b1": "Diagnóstico especializado",
+        "services.clinical.b2": "Eliminación de callosidades",
+        "services.clinical.b3": "Corte correcto de uñas y limpieza de canales",
+        "services.clinical.b4": "Exfoliación y masaje (manual y mecánico)",
+        "services.mani.title": "Manicure clínico",
+        "services.mani.desc": "Limpieza, forma y cuidado profesional para manos saludables y uñas bonitas.",
+        "services.mani.b1": "Limpieza y corte profesional",
+        "services.mani.b2": "Cuidado de cutícula",
+        "services.mani.b3": "Acabado limpio y natural",
+        "services.addons.title": "Extras",
+        "services.addons.desc": "¿Tienes una idea o una necesidad específica? Escríbenos y te recomendamos lo mejor.",
+        "services.addons.b1": "Exfoliación",
+        "services.addons.b2": "Masaje",
+        "services.addons.b3": "Cuidado de uñas encarnadas (evaluación)",
+        "promo.title": "¡Cuida tus pies con profesionales!",
+        "promo.subtitle": "Pedicure clínico completo — reserva tu cita hoy.",
+        "promo.from": "Desde",
+        "gallery.title": "Galería",
+        "gallery.subtitle": "Reemplaza estos espacios con tus mejores fotos (trabajos, pies/manos, espacio del consultorio).",
+        "about.title": "Nosotros",
+        "about.subtitle": "Cuidado clínico con trato amable. Tu comodidad, seguridad e higiene son prioridad.",
+        "about.b1.title": "Higiene y seguridad",
+        "about.b1.desc": "Enfoque clínico con prácticas limpias y cuidadosas.",
+        "about.b2.title": "Atención profesional",
+        "about.b2.desc": "Diagnóstico, técnica y detalle para resultados que duran.",
+        "about.b3.title": "Ubicación accesible",
+        "about.b3.desc": "Estamos en San José del Cabo — agenda por WhatsApp y llega fácil con el mapa.",
+        "contact.title": "Contacto y citas",
+        "contact.subtitle": "La forma más rápida: WhatsApp. También puedes enviar un mensaje desde aquí.",
+        "contact.details": "Detalles",
+        "contact.hours": "Horario",
+        "contact.phone": "Teléfono / WhatsApp",
+        "contact.address": "Dirección",
+        "contact.whatsappBtn": "Reservar por WhatsApp",
+        "contact.mapNote": "Mapa (Google Maps) integrado abajo.",
+        "contact.formTitle": "Enviar mensaje",
+        "contact.formNote": "Este formulario abre tu app de correo para enviar el mensaje (sin backend).",
+        "contact.send": "Enviar mensaje",
+        "contact.msgWa": "Mandar WhatsApp",
+        "contact.tip": "Tip: cambia el usuario de Instagram en los links a tu cuenta real.",
+        "footer.tag": "Pedicure y manicure clínicos"
+      },
+      en: {
+        "header.subtitle": "Clinical pedicure & manicure • San José del Cabo",
+        "lang.label": "Language",
+        "cta.book": "Book on WhatsApp",
+        "nav.services": "Services",
+        "nav.gallery": "Gallery",
+        "nav.about": "About",
+        "nav.contact": "Contact",
+        "hero.kicker": "Health • Hygiene • Beauty",
+        "hero.title": "Your feet deserve professional care.",
+        "hero.subtitle": "It’s not only about aesthetics — it’s about health. We provide a complete clinical pedicure so you can walk comfortably and safely.",
+        "hero.whatsapp": "WhatsApp • Book",
+        "hero.viewServices": "View services",
+        "hero.directions": "Get directions",
+        "hero.hoursLabel": "Hours",
+        "hero.walkins": "Walk-ins welcome (weekends: appointments recommended)",
+        "facts.location": "Location",
+        "facts.hours": "Hours",
+        "facts.phone": "Appointments",
+        "facts.address": "Address",
+        "services.title": "Services",
+        "services.subtitle": "Clinical pedicure & manicure. Professional care, hygiene, and results you can feel and see.",
+        "services.clinical.title": "Complete clinical pedicure",
+        "services.clinical.desc": "Great if you have discomfort, calluses, or want safe professional care.",
+        "services.clinical.b1": "Specialized assessment",
+        "services.clinical.b2": "Callus removal",
+        "services.clinical.b3": "Proper nail trimming and canal cleaning",
+        "services.clinical.b4": "Exfoliation and massage (manual + mechanical)",
+        "services.mani.title": "Clinical manicure",
+        "services.mani.desc": "Clean-up, shaping, and professional care for healthy hands and beautiful nails.",
+        "services.mani.b1": "Professional trimming & cleaning",
+        "services.mani.b2": "Cuticle care",
+        "services.mani.b3": "Clean, natural finish",
+        "services.addons.title": "Add-ons",
+        "services.addons.desc": "Have a specific need? Message us and we’ll recommend the best option.",
+        "services.addons.b1": "Exfoliation",
+        "services.addons.b2": "Massage",
+        "services.addons.b3": "Ingrown nail care (evaluation)",
+        "promo.title": "Care for your feet with professionals!",
+        "promo.subtitle": "Complete clinical pedicure — book today.",
+        "promo.from": "From",
+        "gallery.title": "Gallery",
+        "gallery.subtitle": "Replace these placeholders with your best photos (work, hands/feet, clinic space).",
+        "about.title": "About",
+        "about.subtitle": "Clinical care with friendly service. Comfort, safety, and hygiene come first.",
+        "about.b1.title": "Hygiene & safety",
+        "about.b1.desc": "Clinical approach with clean, careful practices.",
+        "about.b2.title": "Professional care",
+        "about.b2.desc": "Assessment, technique, and detail for lasting results.",
+        "about.b3.title": "Easy to reach",
+        "about.b3.desc": "We’re in San José del Cabo — book on WhatsApp and use the map to arrive easily.",
+        "contact.title": "Contact & booking",
+        "contact.subtitle": "Fastest way: WhatsApp. Or send a message here.",
+        "contact.details": "Details",
+        "contact.hours": "Hours",
+        "contact.phone": "Phone / WhatsApp",
+        "contact.address": "Address",
+        "contact.whatsappBtn": "Book on WhatsApp",
+        "contact.mapNote": "Google Maps is embedded below.",
+        "contact.formTitle": "Send a message",
+        "contact.formNote": "This form opens your email app to send the message (no backend).",
+        "contact.send": "Send message",
+        "contact.msgWa": "Message on WhatsApp",
+        "contact.tip": "Tip: replace the Instagram username in the links with your real account.",
+        "footer.tag": "Clinical pedicure & manicure"
+      }
+    };
+
+    let lang = "es";
+
+    function applyI18N(){
+      document.documentElement.lang = lang;
+      document.getElementById("langState").textContent = lang.toUpperCase();
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        const val = I18N[lang][key];
+        if(val) el.textContent = val;
+      });
+
+      // Update placeholders (inputs)
+      const ph = {
+        es: {
+          name: "Tu nombre",
+          phone: "Teléfono / WhatsApp (opcional)",
+          service: "¿Qué servicio deseas?",
+          message: "Dinos el día/horario que prefieres y cualquier detalle"
+        },
+        en: {
+          name: "Your name",
+          phone: "Phone / WhatsApp (optional)",
+          service: "Which service do you want?",
+          message: "Tell us your preferred day/time and any details"
+        }
+      };
+      document.getElementById("name").placeholder = ph[lang].name;
+      document.getElementById("phone").placeholder = ph[lang].phone;
+      document.getElementById("service").placeholder = ph[lang].service;
+      document.getElementById("message").placeholder = ph[lang].message;
+    }
+
+    function toggleLang(){
+      lang = (lang === "es") ? "en" : "es";
+      applyI18N();
+    }
+
+    // Mailto form (no backend)
+    function sendMail(e){
+      e.preventDefault();
+      const to = "gmpedicurecabo@gmail.com"; // <-- replace with your real inbox if different
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const service = document.getElementById('service').value.trim();
+      const msg = document.getElementById('message').value.trim();
+
+      const subjectText = (lang === "es") ? ("Solicitud de cita: " + service) : ("Booking request: " + service);
+      const subject = encodeURIComponent(subjectText);
+      const body = encodeURIComponent(
+        ((lang === "es") ? "Nombre: " : "Name: ") + name + "\n" +
+        ((lang === "es") ? "Teléfono/WhatsApp: " : "Phone/WhatsApp: ") + (phone || "—") + "\n" +
+        ((lang === "es") ? "Servicio: " : "Service: ") + service + "\n\n" +
+        msg + "\n\n" +
+        "GM Pedicure"
+      );
+
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+      return false;
+    }
+
+    document.getElementById('yr').textContent = new Date().getFullYear();
+    applyI18N();
+  </script>
+</body>
+</html>
